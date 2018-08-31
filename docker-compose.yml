@@ -6,11 +6,13 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
   app: 
     container_name: app
     build:
       context: .
-      dockerfile: Dockerfile.test
+      dockerfile: Dockerfile.integration
     depends_on: 
       - mongo
     ports:
