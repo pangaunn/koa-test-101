@@ -1,0 +1,9 @@
+FROM node:8.11.3-alpine
+
+WORKDIR work
+COPY ./package.json /work/package.json
+COPY ./package-lock.json /work/package-lock.json
+RUN npm install
+COPY . /work
+
+ENTRYPOINT ./docker-entrypoint.sh

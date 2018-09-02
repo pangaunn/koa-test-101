@@ -1,0 +1,19 @@
+version: '2'
+services: 
+  mongo: 
+    container_name: mongo
+    image: mongo:4.1
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+  app: 
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile.integration
+    depends_on: 
+      - mongo
+    ports:
+      - "3000:3000"
